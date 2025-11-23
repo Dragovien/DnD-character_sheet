@@ -1,5 +1,5 @@
 <template>
-    <UContainer class="container min-h-[calc(100vh-var(--ui-header-height))]">
+    <UContainer class="container">
         <UCard variant="subtle" class="container card">
             <UContainer class="container">
                 <CharacterUploader />
@@ -10,14 +10,6 @@
 </template>
 
 <style scoped>
-.container {
-    display: flex;
-    align-self: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-}
-
 .card {
     height: 80lvh;
 }

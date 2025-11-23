@@ -1,5 +1,5 @@
 <template>
-    <div v-if="store.character" class="p-6 border rounded bg-gray-50 space-y-6">
+    <div v-if="store.character" class="page">
         <!-- MONNAIE -->
         <h4 class="font-semibold mt-4">💰 Monnaie</h4>
         <div class="grid grid-cols-5 gap-2">

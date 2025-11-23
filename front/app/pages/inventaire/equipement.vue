@@ -1,5 +1,5 @@
 <template>
-    <div v-if="store.character" class="p-6 border rounded bg-gray-50 space-y-6">
+    <div v-if="store.character" class="page">
         <!-- INVENTAIRE -->
         <h3 class="text-xl font-semibold">🎒 Équipement</h3>
         <p class="whitespace-pre-line">{{ store.character.equipment }}</p>
