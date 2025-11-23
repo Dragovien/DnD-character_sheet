@@ -1,110 +1,8 @@
 <template>
-  <div class="space-y-8">
+  <!-- Upload PDF -->
+  <UFileUpload layout="list" :dropzone="true" :interactive="true" accept="application/pdf"
+    label="Fiche de personnage D&D 5e" description="PDF" class="w-96 min-h-96" @update:modelValue="upload" />
 
-    <!-- Upload PDF -->
-    <UFileUpload layout="list" :dropzone="true" :interactive="true" accept="application/pdf"
-      label="Fiche de personnage D&D 5e" description="PDF" class="w-96 min-h-48" @update:modelValue="upload" />
-
-    <!-- Full Character Sheet -->
-    <div v-if="store.character" class="p-6 border rounded bg-gray-50 space-y-6">
-
-      <!-- CARACTÉRISTIQUES -->
-      <h3 class="text-xl font-semibold mt-4">💠 Caractéristiques</h3>
-
-      <div class="grid grid-cols-3 gap-4">
-        <div><strong>FOR :</strong> {{ store.character.abilities.str }} ({{ formatMod(store.character.abilities.modstr)
-          }})</div>
-        <div><strong>DEX :</strong> {{ store.character.abilities.dex }} ({{ formatMod(store.character.abilities.moddex)
-          }})</div>
-        <div><strong>CON :</strong> {{ store.character.abilities.con }} ({{ formatMod(store.character.abilities.modcon)
-          }})</div>
-        <div><strong>INT :</strong> {{ store.character.abilities.int }} ({{ formatMod(store.character.abilities.modint)
-          }})</div>
-        <div><strong>SAG :</strong> {{ store.character.abilities.wis }} ({{ formatMod(store.character.abilities.modwis)
-          }})</div>
-        <div><strong>CHA :</strong> {{ store.character.abilities.cha }} ({{ formatMod(store.character.abilities.modcha)
-          }})</div>
-      </div>
-
-      <!-- SAUVEGARDES -->
-      <h3 class="text-xl font-semibold">🛡️ Jets de sauvegarde</h3>
-
-      <ul class="grid grid-cols-3 gap-2">
-        <li>FOR : {{ store.character.saves.save1 }}</li>
-        <li>DEX : {{ store.character.saves.save2 }}</li>
-        <li>CON : {{ store.character.saves.save3 }}</li>
-        <li>INT : {{ store.character.saves.save4 }}</li>
-        <li>SAG : {{ store.character.saves.save5 }}</li>
-        <li>CHA : {{ store.character.saves.save6 }}</li>
-      </ul>
-
-      <!-- COMPÉTENCES -->
-      <h3 class="text-xl font-semibold">🎯 Compétences</h3>
-
-      <div class="grid grid-cols-2 gap-1 text-sm">
-        <p>Athlétisme : {{ store.character.skills.skill1 }}</p>
-        <p>Acrobaties : {{ store.character.skills.skill10 }}</p>
-        <p>Discrétion : {{ store.character.skills.skill11 }}</p>
-        <p>Escamotage : {{ store.character.skills.skill12 }}</p>
-        <p>Arcanes : {{ store.character.skills.skill13 }}</p>
-        <p>Histoire : {{ store.character.skills.skill14 }}</p>
-        <p>Investigation : {{ store.character.skills.skill15 }}</p>
-        <p>Nature : {{ store.character.skills.skill16 }}</p>
-        <p>Religion : {{ store.character.skills.skill17 }}</p>
-        <p>Intuition : {{ store.character.skills.skill2 }}</p>
-        <p>Médecine : {{ store.character.skills.skill3 }}</p>
-        <p>Perception : {{ store.character.skills.skill4 }}</p>
-        <p>Survie : {{ store.character.skills.skill5 }}</p>
-        <p>Intimidation : {{ store.character.skills.skill6 }}</p>
-        <p>Persuasion : {{ store.character.skills.skill7 }}</p>
-        <p>Représentation : {{ store.character.skills.skill8 }}</p>
-        <p>Tromperie : {{ store.character.skills.skill9 }}</p>
-      </div>
-
-      <!-- LANGUES / TRAITS -->
-      <h3 class="text-xl font-semibold">🧬 Race / Traits</h3>
-
-      <p><strong>Traits raciaux :</strong></p>
-      <p class="whitespace-pre-line">{{ store.character.traits }}</p>
-
-      <p><strong>Langues :</strong> {{ store.character.languages }}</p>
-
-      <!-- CAPACITÉS -->
-      <h3 class="text-xl font-semibold">⭐ Capacités & Dons</h3>
-
-      <div>
-        <p class="font-semibold">Capacités de classe :</p>
-        <p class="whitespace-pre-line">{{ store.character.features1 }}</p>
-
-        <p class="font-semibold mt-3">Capacités de sous-classe :</p>
-        <p class="whitespace-pre-line">{{ store.character.features2 }}</p>
-
-        <p class="font-semibold mt-3">Dons :</p>
-        <p class="whitespace-pre-line">{{ store.character.feats }}</p>
-      </div>
-
-      <!-- ARMES -->
-      <h3 class="text-xl font-semibold">🗡️ Armes</h3>
-
-      <ul class="list-disc ml-6">
-        <li v-for="(w, i) in store.character.weapons" :key="i" class="text-sm">
-          <strong>{{ w.name }}</strong>
-          — Bonus {{ w.bonus }}, Dégâts {{ w.damage }}
-          <span v-if="w.notes">({{ w.notes }})</span>
-        </li>
-      </ul>
-
-      <!-- MÉTADONNÉES -->
-      <h4 class="mt-4 font-semibold">Méta</h4>
-      <div class="grid grid-cols-2 gap-2 text-sm">
-        <div>Spell modifier: {{ store.character.spellMod }}</div>
-        <div>Spell DC: {{ store.character.spellDC }}</div>
-        <div>Spell bonus: {{ store.character.spellBonus }}</div>
-        <div>Attunements: {{ store.character.attunements?.join(', ') }}</div>
-      </div>
-
-    </div>
-  </div>
 </template>
 
 <script setup lang="ts">
@@ -113,11 +11,6 @@ import type { CharacterSheet } from '~/types/CharacterSheet'
 import { useCharacterStore } from '~/stores/character'
 
 const store = useCharacterStore()
-
-const formatMod = (v: number | undefined) => {
-  if (v === undefined || v === null) return ''
-  return v >= 0 ? `+${v}` : `${v}`
-}
 
 function mapPdfFieldsToCharacter(fields: Record<string, string>): CharacterSheet {
   const toNum = (v: any) => {
@@ -186,23 +79,25 @@ function mapPdfFieldsToCharacter(fields: Record<string, string>): CharacterSheet
     // ---------------------------
     skills: {
       skill1: toNum(pick('skill1', 'skill_ath', 'Athlétisme')),
-      skill2: toNum(pick('skill2', 'skill_ins', 'Intuition')),
-      skill3: toNum(pick('skill3', 'skill_med', 'Médecine')),
-      skill4: toNum(pick('skill4', 'skill_per', 'Perception')),
-      skill5: toNum(pick('skill5', 'skill_sur', 'Survie')),
-      skill6: toNum(pick('skill6', 'skill_inti', 'Intimidation')),
-      skill7: toNum(pick('skill7', 'skill_perc', 'Persuasion')),
-      skill8: toNum(pick('skill8', 'skill_repr', 'Représentation')),
-      skill9: toNum(pick('skill9', 'skill_trom', 'Tromperie')),
-      skill10: toNum(pick('skill10', 'skill_acro', 'Acrobaties')),
-      skill11: toNum(pick('skill11', 'skill_disc', 'Discrétion')),
-      skill12: toNum(pick('skill12', 'skill_esc', 'Escamotage')),
-      skill13: toNum(pick('skill13', 'skill_arc', 'Arcanes')),
-      skill14: toNum(pick('skill14', 'skill_hist', 'Histoire')),
-      skill15: toNum(pick('skill15', 'skill_inv', 'Investigation')),
-      skill16: toNum(pick('skill16', 'skill_nat', 'Nature')),
-      skill17: toNum(pick('skill17', 'skill_rel', 'Religion')),
-      skill18: toNum(pick('skill18')),
+      skill2: toNum(pick('skill2', 'skill_acro', 'Acrobaties')),
+      skill3: toNum(pick('skill3', 'skill_disc', 'Discrétion')),
+      skill4: toNum(pick('skill4', 'skill_esc', 'Escamotage')),
+      skill5: toNum(pick('skill5', 'skill_arc', 'Arcanes')),
+      skill6: toNum(pick('skill6', 'skill_hist', 'Histoire')),
+      skill7: toNum(pick('skill7', 'skill_inv', 'Investigation')),
+      skill8: toNum(pick('skill8', 'skill_nat', 'Nature')),
+      skill9: toNum(pick('skill9', 'skill_rel', 'Religion')),
+      skill10: toNum(pick('skill10', 'skill_dre', 'Dressage')),
+      skill11: toNum(pick('skill11', 'skill_ins', 'Intuition')),
+      skill12: toNum(pick('skill12', 'skill_med', 'Médecine')),
+      skill13: toNum(pick('skill13', 'skill_per', 'Perception')),
+      skill14: toNum(pick('skill14', 'skill_sur', 'Survie')),
+      skill15: toNum(pick('skill15', 'skill_inti', 'Intimidation')),
+      skill16: toNum(pick('skill16', 'skill_perc', 'Persuasion')),
+      skill17: toNum(pick('skill17', 'skill_repr', 'Représentation')),
+      skill18: toNum(pick('skill18', 'skill_trom', 'Tromperie')),
+
+
     },
 
     traits: pick('traits', 'traits raciaux') || '',
@@ -246,11 +141,24 @@ function mapPdfFieldsToCharacter(fields: Record<string, string>): CharacterSheet
     // ---------------------------
     spells: Array.from({ length: 30 }).map((_, i) => {
       const idx = i + 1
+
+      const isChecked = (v: any) => {
+        if (!v) return false
+        return ['yes', 'on', 'oui', '1', 'true'].includes(String(v).toLowerCase())
+      }
+
+      const rawRange = fields[`spell${idx}r`] || ''
+      const parts = rawRange.split('/')
+
       return {
         name: fields[`spell${idx}`] || '',
         level: fields[`spell${idx}l`] ? toNum(fields[`spell${idx}l`]) : null,
         effect: fields[`spell${idx}c`] || '',
-        range: fields[`spell${idx}r`] || '',
+        incantationTime: parts[0]?.trim() ?? '',
+        range: parts[1]?.trim() ?? '',
+        concentration: isChecked(fields[`c${idx}`]),
+        rituel: isChecked(fields[`r${idx}`]),
+        materiel: isChecked(fields[`m${idx}`])
       }
     }).filter(s => s.name && s.name.trim() !== ''),
 
@@ -260,6 +168,10 @@ function mapPdfFieldsToCharacter(fields: Record<string, string>): CharacterSheet
     slot3: pick('slot3') || '',
     slot4: pick('slot4') || '',
     slot5: pick('slot5') || '',
+    slot6: pick('slot6') || '',
+    slot7: pick('slot7') || '',
+    slot8: pick('slot8') || '',
+    slot9: pick('slot9') || '',
 
     spellMod: pick('spell-mod') || '',
     spellDC: pick('spell-dc') || '',
@@ -295,11 +207,26 @@ async function upload(file: File | null | undefined) {
       let value = ''
       try {
         value = (f as any).getText() ?? ''
+
       } catch {
         try {
           value = (f as any).getValue() ?? ''
         } catch {
-          value = ''
+          try {
+            if (typeof (f as any).isChecked === 'function') {
+              console.log(name)
+              // Checkbox détectée
+              value = (f as any).isChecked() ? 'Yes' : 'Off'
+              console.log(value)
+            } else if (typeof (f as any).getOnValue === 'function') {
+              // Autre méthode possible
+              value = (f as any).getOnValue()
+            } else {
+              value = ''
+            }
+          } catch {
+            value = ''
+          }
         }
       }
       raw[name] = String(value)
@@ -312,6 +239,4 @@ async function upload(file: File | null | undefined) {
 }
 </script>
 
-<style scoped>
-/* minimal styling, the project may use Tailwind — adjust as needed */
-</style>
+<style scoped></style>
