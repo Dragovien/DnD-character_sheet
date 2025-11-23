@@ -10,71 +10,89 @@ import type { NavigationMenuItem } from '@nuxt/ui'
 const items = ref<NavigationMenuItem[]>([
     {
         label: 'Personnage',
-        icon: 'i-lucide-book-open',
+        icon: 'arcticons:dndrulebook',
         to: '/personnage',
+    },
+    {
+        label: 'Traits/Capacités',
+        icon: 'game-icons:skills',
+        to: '/traits_capacites',
+    },
+    {
+        label: 'Armes/Armures',
+        icon: 'game-icons:swords-emblem',
         children: [
             {
-                label: 'Introduction',
-                description: 'Fully styled and customizable components for Nuxt.',
-                icon: 'i-lucide-house'
+                label: 'Armes',
+                icon: 'game-icons:switch-weapon',
+                to: '/armes_armures/armes'
             },
             {
-                label: 'Installation',
-                description: 'Learn how to install and configure Nuxt UI in your application.',
-                icon: 'i-lucide-cloud-download'
+                label: 'Armures',
+                icon: 'game-icons:leg-armor',
+                to: '/armes_armures/armures'
             },
             {
-                label: 'Icons',
-                icon: 'i-lucide-smile',
-                description: 'You have nothing to do, @nuxt/icon will handle it automatically.'
+                label: 'Objets magiques',
+                icon: 'game-icons:magic-axe',
+                to: '/armes_armures/linked'
             },
-            {
-                label: 'Colors',
-                icon: 'i-lucide-swatch-book',
-                description: 'Choose a primary and a neutral color from your Tailwind CSS theme.'
-            },
-            {
-                label: 'Theme',
-                icon: 'i-lucide-cog',
-                description: 'You can customize components by using the `class` / `ui` props or in your app.config.ts.'
-            }
         ]
     },
     {
         label: 'Inventaire',
-        icon: 'i-lucide-database',
-        to: '/inventaire',
+        icon: 'game-icons:backpack',
         children: [
             {
+                label: 'Équipement',
+                icon: 'game-icons:grapple',
+                to: '/inventaire/equipement',
+            },
+            {
+                label: 'Loot',
+                icon: 'game-icons:open-treasure-chest',
+                to: '/inventaire/loot',
+            },
+            {
+                label: 'Rituel',
+                icon: 'game-icons:smoke-bomb',
+                to: '/inventaire/rituel',
+            },
+            {
                 label: 'Monnaie',
-                icon: 'i-lucide-file-text',
+                icon: 'game-icons:coins',
                 to: '/inventaire/monnaie'
             },
+        ]
+    },
+    {
+        label: 'Sorts/Incantation',
+        icon: 'game-icons:spell-book',
+        children: [
             {
-                label: 'useOverlay',
-                icon: 'i-lucide-file-text',
-                description: 'Display a modal/slideover within your application.',
+                label: 'Sorts',
+                icon: 'game-icons:bolt-spell-cast',
+                to: '/sorts_incantations/sort'
             },
             {
-                label: 'useToast',
-                icon: 'i-lucide-file-text',
-                description: 'Display a toast within your application.',
-            }
+                label: 'Incantation',
+                icon: 'game-icons:tongue',
+                to: '/sorts_incantations/incantation'
+            },
         ]
     },
     {
         label: 'Jets',
-        icon: 'i-lucide-database',
-        to: '/jets',
+        icon: 'arcticons:dnd-5e-character-keep',
         children: [
             {
                 label: 'Jets de compétence',
-                icon: 'i-lucide-file-text',
-                to: '/jets/compétence'
+                icon: 'arcticons:dnd-5e-character-keep',
+                to: '/jets/competence'
             },
             {
                 label: 'Jets de sauvegarde',
-                icon: 'i-lucide-file-text',
+                icon: 'arcticons:dnd-5e-character-keep',
                 to: '/jets/sauvegarde'
             },
         ]
