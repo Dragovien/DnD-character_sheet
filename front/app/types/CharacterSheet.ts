@@ -56,7 +56,11 @@ export interface SpellEntry {
   name: string
   level?: number | null
   effect?: string
+  incantationTime?: string
   range?: string
+  concentration: boolean
+  rituel: boolean
+  materiel: boolean
 }
 
 export interface CharacterSheet {
@@ -112,6 +116,10 @@ export interface CharacterSheet {
   slot3?: string
   slot4?: string
   slot5?: string
+  slot6?: string
+  slot7?: string
+  slot8?: string
+  slot9?: string
 
   spellMod?: string
   spellDC?: string
