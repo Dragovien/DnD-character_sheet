@@ -24,6 +24,28 @@ export interface SavingThrows {
   save6: number
 }
 
+export interface DeathSavingThrows {
+  success1: boolean
+  success2: boolean
+  success3: boolean
+  fail1: boolean
+  fail2: boolean
+  fail3: boolean
+}
+
+export interface MasteryTraining {
+  armors: ArmorMastery
+  weapons: string,
+  tools: string
+}
+
+export interface ArmorMastery {
+  light: boolean
+  intermediate: boolean
+  heavy: boolean
+  shield: boolean
+}
+
 export interface Skills {
   skill1: number
   skill2: number
@@ -82,7 +104,9 @@ export interface CharacterSheet {
 
   abilities: AbilityScores
   saves: SavingThrows
+  deathSaving: DeathSavingThrows
   skills: Skills
+  inspiration: boolean
 
   traits: string
   features1: string
@@ -91,6 +115,7 @@ export interface CharacterSheet {
 
   hpMax: number
   hpCurrent: number
+  hpFormula: string
   hpTemp: number
   hitDiceMax: string
   hitDiceSpent: string
@@ -112,6 +137,7 @@ export interface CharacterSheet {
 
   // spell slots & meta
   spellSlots: Record<number, { total: number; used: number }>
+  masteryTraining: MasteryTraining
 
 
   spellMod?: string

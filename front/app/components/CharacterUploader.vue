@@ -75,6 +75,22 @@ function mapPdfFieldsToCharacter(fields: Record<string, string>): CharacterSheet
       save6: toNum(pick('save6', 'save_cha')),
     },
 
+    deathSaving: (() => {
+      // helper checkbox
+      const isChecked = (v: any) =>
+        ['yes', 'on', 'oui', 'true', '1', 'sí', 'si', 'x'].includes(String(v).toLowerCase())
+
+
+      return {
+        success1: isChecked(fields['DS1']),
+        success2: isChecked(fields['DS2']),
+        success3: isChecked(fields['DS3']),
+        fail1: isChecked(fields['DS4']),
+        fail2: isChecked(fields['DS5']),
+        fail3: isChecked(fields['DS6'])
+      }
+    })(),
+
     // ---------------------------
     // SKILLS
     // ---------------------------
@@ -106,8 +122,21 @@ function mapPdfFieldsToCharacter(fields: Record<string, string>): CharacterSheet
     features2: pick('features2', 'features sous-classe') || '',
     feats: pick('feats', 'dons') || '',
 
+
     hpMax: toNum(pick('hp-max', 'hpmax', 'hp_max')),
-    hpCurrent: toNum(pick('hp-current')),
+    ...(() => {
+      const rawHp = pick('hp-current') || ''
+
+      const hpParts = rawHp
+        .split('\n')
+        .map(p => p.trim())
+        .filter(Boolean)
+
+      return {
+        hpFormula: hpParts[0] || '',
+        hpCurrent: hpParts[1] ? toNum(hpParts[1]) : 0
+      }
+    })(),
     hpTemp: toNum(pick('hp-temp')),
 
     hitDiceMax: pick('hd-max', 'hd_max') || '',
@@ -123,6 +152,34 @@ function mapPdfFieldsToCharacter(fields: Record<string, string>): CharacterSheet
     equipment: pick('equipment', 'equipement') || '',
     backstory: pick('backstory', 'Histoire') || '',
     languages: pick('languages', 'langues') || '',
+
+    inspiration: (() => {
+      // helper checkbox
+      const isChecked = (v: any) =>
+        ['yes', 'on', 'oui', 'true', '1', 'sí', 'si', 'x'].includes(String(v).toLowerCase())
+
+
+      return isChecked(fields['inspiration'])
+    })(),
+
+
+    masteryTraining: (() => {
+      // helper checkbox
+      const isChecked = (v: any) =>
+        ['yes', 'on', 'oui', 'true', '1', 'sí', 'si', 'x'].includes(String(v).toLowerCase())
+
+
+      return {
+        armors: {
+          light: isChecked(fields['armor1']),
+          intermediate: isChecked(fields['armor2']),
+          heavy: isChecked(fields['armor3']),
+          shield: isChecked(fields['armor4'])
+        },
+        weapons: pick('weapons') || '',
+        tools: pick('tools') || '',
+      }
+    })(),
 
     // ---------------------------
     // WEAPONS
@@ -229,17 +286,14 @@ async function upload(file: File | null | undefined) {
       let value = ''
       try {
         value = (f as any).getText() ?? ''
-
       } catch {
         try {
           value = (f as any).getValue() ?? ''
         } catch {
           try {
             if (typeof (f as any).isChecked === 'function') {
-              console.log(name)
               // Checkbox détectée
               value = (f as any).isChecked() ? 'Yes' : 'Off'
-              console.log(value)
             } else if (typeof (f as any).getOnValue === 'function') {
               // Autre méthode possible
               value = (f as any).getOnValue()
