@@ -28,24 +28,12 @@
 
         <!-- EMPLACEMENTS DE SORTS -->
         <h4 class="font-semibold mt-4">Emplacements de sorts</h4>
-        <div class="grid grid-cols-5 gap-2 text-sm">
-            <div>Slot1: {{ store.character.slot1 }}</div>
-            <div>Slot2: {{ store.character.slot2 }}</div>
-            <div>Slot3: {{ store.character.slot3 }}</div>
-            <div>Slot4: {{ store.character.slot4 }}</div>
-            <div>Slot5: {{ store.character.slot5 }}</div>
-            <div>Slot6: {{ store.character.slot6 }}</div>
-            <div>Slot7: {{ store.character.slot7 }}</div>
-            <div>Slot8: {{ store.character.slot8 }}</div>
-            <div>Slot9: {{ store.character.slot9 }}</div>
-
-            <!-- pour chaque slot/niveau, récupérer le nombre de sort utilisé grâce à checkbox (cbslot) -->
-            <!-- Récupérer les infos de la partie ENTRAÎNEMENTS & MAÎTRISES -->
-            <!-- Diviser la partie équipement pour avoir équipement/rituel/loot-->
-            <!-- Récupérer et afficher la CA + équipement bouclier-->
-            <!-- Récupérer et afficher points de vie/dés de vie/jets contre la mort-->
-            <!-- Récupérer et afficher initiative/vitesse/taille/perception passive-->
-            <!-- Récupérer et afficher bonus de maitrise-->
+        <div class="grid grid-cols-3 gap-2 text-sm">
+            <div v-for="(slot, i) in store.character.spellSlots">
+                <p>Sorts niveau {{ i }}:
+                    <span><b>{{ slot.used }}</b> utilisé(s) / <b>{{ slot.total }}</b></span>
+                </p>
+            </div>
         </div>
     </div>
 </template>

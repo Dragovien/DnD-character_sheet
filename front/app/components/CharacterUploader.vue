@@ -18,6 +18,7 @@ function mapPdfFieldsToCharacter(fields: Record<string, string>): CharacterSheet
     return Number.isNaN(n) ? 0 : n
   }
 
+
   // helper to try multiple possible field names
   const pick = (...names: string[]) => {
     for (const n of names) {
@@ -162,16 +163,37 @@ function mapPdfFieldsToCharacter(fields: Record<string, string>): CharacterSheet
       }
     }).filter(s => s.name && s.name.trim() !== ''),
 
-    // Spell slots (spell levels per class)
-    slot1: pick('slot1') || '',
-    slot2: pick('slot2') || '',
-    slot3: pick('slot3') || '',
-    slot4: pick('slot4') || '',
-    slot5: pick('slot5') || '',
-    slot6: pick('slot6') || '',
-    slot7: pick('slot7') || '',
-    slot8: pick('slot8') || '',
-    slot9: pick('slot9') || '',
+    // ---------------------------
+    // SPELL SLOTS (clean version)
+    // ---------------------------
+    spellSlots: (() => {
+      // helper checkbox
+      const isChecked = (v: any) =>
+        ['yes', 'on', 'oui', 'true', '1', 'sí', 'si', 'x'].includes(String(v).toLowerCase())
+
+      // count used cbslotXY
+      function countSlotsUsed(level: number) {
+        let used = 0
+        for (let i = 1; i <= 9; i++) {
+          const key = `cbslot${level}${i}`
+          if (fields[key] && isChecked(fields[key])) used++
+        }
+        return used
+      }
+
+      const out: Record<number, { total: number; used: number }> = {}
+
+      for (let lvl = 1; lvl <= 9; lvl++) {
+        const total = Number(pick(`slot${lvl}`)) || 0
+        const used = countSlotsUsed(lvl)
+        out[lvl] = { total, used }
+      }
+
+      return out
+    })(),
+
+
+
 
     spellMod: pick('spell-mod') || '',
     spellDC: pick('spell-dc') || '',

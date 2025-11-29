@@ -111,15 +111,8 @@ export interface CharacterSheet {
   languages: string
 
   // spell slots & meta
-  slot1?: string
-  slot2?: string
-  slot3?: string
-  slot4?: string
-  slot5?: string
-  slot6?: string
-  slot7?: string
-  slot8?: string
-  slot9?: string
+  spellSlots: Record<number, { total: number; used: number }>
+
 
   spellMod?: string
   spellDC?: string
