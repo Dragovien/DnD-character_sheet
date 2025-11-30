@@ -27,6 +27,45 @@ function mapPdfFieldsToCharacter(fields: Record<string, string>): CharacterSheet
     return ''
   }
 
+  function splitEquipmentSections(text: string) {
+    const sections: { title: string; content: string }[] = [];
+    const regex = /\/([^\/]+)\//g; // détecte /TITRE/
+
+    let match: RegExpExecArray | null;
+    let lastIndex = 0;
+    let lastTitle: string | null = null;
+
+    while ((match = regex.exec(text)) !== null) {
+      const title = (match?.[1] ?? '').trim()
+      const startContent = regex.lastIndex;
+
+      // Si un titre précédent existe, enregistrer sa section
+      if (lastTitle !== null) {
+        const content = text.slice(lastIndex, match.index).trim();
+        sections.push({
+          title: lastTitle,
+          content
+        });
+      }
+
+      // Nouveau titre
+      lastTitle = title;
+      lastIndex = startContent;
+    }
+
+    // Ajouter la dernière section
+    if (lastTitle !== null) {
+      const content = text.slice(lastIndex).trim();
+      sections.push({
+        title: lastTitle,
+        content
+      });
+    }
+
+    return sections;
+  }
+
+
   return {
     charactername: pick('charactername', 'nom du personnage', 'name') || '',
     background: pick('background', 'historique') || '',
@@ -149,7 +188,7 @@ function mapPdfFieldsToCharacter(fields: Record<string, string>): CharacterSheet
     pp: toNum(pick('pp', 'PP')),
 
     appearance: pick('appearance', 'apparence') || '',
-    equipment: pick('equipment', 'equipement') || '',
+    equipment: splitEquipmentSections(pick('equipment', 'equipement')),
     backstory: pick('backstory', 'Histoire') || '',
     languages: pick('languages', 'langues') || '',
 

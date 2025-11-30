@@ -85,6 +85,12 @@ export interface SpellEntry {
   materiel: boolean
 }
 
+export interface EquipmentSection {
+  title: string
+  content: string
+}
+
+
 export interface CharacterSheet {
   charactername: string
   background: string
@@ -126,7 +132,7 @@ export interface CharacterSheet {
   gp: number
   pp: number
 
-  equipment: string
+  equipment: EquipmentSection[]
   weapons: WeaponEntry[]
   spells: SpellEntry[]
 
