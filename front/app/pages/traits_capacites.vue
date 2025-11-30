@@ -3,7 +3,9 @@
         <!-- TRAITS -->
         <UCard>
             <template #header>
-                <h3 class="text-xl font-semibold">🧬 Traits</h3>
+                <h3 class="text-xl font-semibold">
+                    <UIcon name="game-icons:notebook" class="size-5" /> Traits
+                </h3>
             </template>
 
             <p><strong>Traits raciaux :</strong></p>
@@ -14,16 +16,18 @@
         <!-- CAPACITÉS -->
         <UCard>
             <template #header>
-                <h3 class="text-xl font-semibold">⭐ Capacités & Dons</h3>
+                <h3 class="text-xl font-semibold">
+                    <UIcon name="game-icons:skills" class="size-5" /> Capacités & Dons
+                </h3>
             </template>
 
             <div>
                 <p class="font-semibold">Capacités de classe :</p>
                 <p class="whitespace-pre-line">{{ store.character.features1 }}</p>
-
+                <USeparator class="separator" />
                 <p class="font-semibold mt-3">Capacités de sous-classe :</p>
                 <p class="whitespace-pre-line">{{ store.character.features2 }}</p>
-
+                <USeparator class="separator" />
                 <p class="font-semibold mt-3">Dons :</p>
                 <p class="whitespace-pre-line">{{ store.character.feats }}</p>
             </div>
