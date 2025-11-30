@@ -1,7 +1,7 @@
 <template>
     <div v-if="store.character" class="page">
         <!-- CARACTÉRISTIQUES -->
-        <UCard>
+        <UCard variant="subtle">
             <template #header>
                 <h3 class="text-xl font-semibold mt-4">
                     <UIcon name="game-icons:histogram" class="size-5" /> Caractéristiques
@@ -11,27 +11,27 @@
             <div class="grid grid-cols-3 gap-4">
                 <div><strong>FOR :</strong> {{ store.character.abilities.str }} ({{
                     formatMod(store.character.abilities.modstr)
-                    }})</div>
+                }})</div>
                 <div><strong>DEX :</strong> {{ store.character.abilities.dex }} ({{
                     formatMod(store.character.abilities.moddex)
-                    }})</div>
+                }})</div>
                 <div><strong>CON :</strong> {{ store.character.abilities.con }} ({{
                     formatMod(store.character.abilities.modcon)
-                    }})</div>
+                }})</div>
                 <div><strong>INT :</strong> {{ store.character.abilities.int }} ({{
                     formatMod(store.character.abilities.modint)
-                    }})</div>
+                }})</div>
                 <div><strong>SAG :</strong> {{ store.character.abilities.wis }} ({{
                     formatMod(store.character.abilities.modwis)
-                    }})</div>
+                }})</div>
                 <div><strong>CHA :</strong> {{ store.character.abilities.cha }} ({{
                     formatMod(store.character.abilities.modcha)
-                    }})</div>
+                }})</div>
             </div>
         </UCard>
 
         <div class="flex-container">
-            <UCard class="col1">
+            <UCard class="col1" variant="subtle">
                 <template #header>
                     <h3 class="text-xl font-semibold mt-4">
                         <UIcon name="solar:health-bold" class="size-5" /> HP
@@ -48,7 +48,7 @@
             </UCard>
 
             <div class="col2">
-                <UCard>
+                <UCard variant="subtle">
                     <template #header>
                         <h3 class="text-xl font-semibold mt-4">
                             <UIcon name="arcticons:fiftheditioncharactersheet" class="size-5" /> Stats

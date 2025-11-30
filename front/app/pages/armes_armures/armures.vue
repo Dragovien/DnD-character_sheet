@@ -1,11 +1,14 @@
 <template>
     <div v-if="store.character" class="page">
-        <UCard>
+        <UCard variant="subtle">
             <template #header>
-                <h3 class="text-xl font-semibold"> Langues</h3>
+                <h3 class="text-xl font-semibold">
+                    <UIcon name="game-icons:leg-armor" class="size-5" /> Armure
+                </h3>
             </template>
 
-            <p><strong>Langues :</strong> {{ store.character.languages }}</p>
+            <p class="whitespace-pre-line">{{store.character.equipment.find((item) => item.title ===
+                'Armure')?.content}}</p>
         </UCard>
     </div>
 </template>

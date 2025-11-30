@@ -1,8 +1,10 @@
 <template>
     <div v-if="store.character" class="page">
-        <UCard>
+        <UCard variant="subtle">
             <template #header>
-                <h3 class="text-xl font-semibold">Caractéristiques d'incantation</h3>
+                <h3 class="text-xl font-semibold">
+                    <UIcon name="game-icons:tongue" class="size-5" /> Caractéristiques d'incantation
+                </h3>
             </template>
 
             <div class="grid grid-cols-2 gap-2 text-sm">

@@ -1,6 +1,6 @@
 <template>
     <div v-if="store.character" class="page">
-        <UCard>
+        <UCard variant="subtle">
             <template #header>
                 <h3 class="text-xl font-semibold">🛡️ Jets de sauvegarde</h3>
             </template>

@@ -1,7 +1,7 @@
 <template>
     <div v-if="store.character" class="page">
         <!-- Training Mastery -->
-        <UCard>
+        <UCard variant="subtle">
             <template #header>
                 <h3 class="text-xl font-semibold mt-4">
                     <UIcon name="game-icons:master-of-arms" class="size-5" /> Entrainements et maitrises
@@ -13,12 +13,12 @@
                     <strong>Armure</strong>
                     <USeparator class="separator" />
                     <div><strong>Légère :</strong> {{ store.character.masteryTraining.armors.light ? 'Oui' : 'Non'
-                        }}</div>
+                    }}</div>
                     <div><strong>Intermédiaire :</strong> {{ store.character.masteryTraining.armors.intermediate ?
                         'Oui' :
                         'Non' }}</div>
                     <div><strong>Lourde :</strong> {{ store.character.masteryTraining.armors.heavy ? 'Oui' : 'Non'
-                        }}</div>
+                    }}</div>
                     <div><strong>Bouclier :</strong> {{ store.character.masteryTraining.armors.shield ? 'Oui' :
                         'Non' }}
                     </div>

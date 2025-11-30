@@ -1,7 +1,7 @@
 <template>
     <div v-if="store.character" class="page">
         <!-- IDENTITÉ -->
-        <UCard class="identity">
+        <UCard class="identity" variant="subtle">
             <template #header>
                 <h2 class="text-2xl font-bold">
                     <UIcon name="game-icons:notebook" class="size-5" /> Fiche de personnage
@@ -23,7 +23,7 @@
 
         <div class="flex-container">
             <!-- HISTOIRE -->
-            <UCard class="histoire col1">
+            <UCard class="histoire col1" variant="subtle">
                 <template #header>
                     <h3 class="text-xl font-semibold">
                         <UIcon name="game-icons:scroll-unfurled" class="size-5" /> Histoire
@@ -36,7 +36,7 @@
 
             <div class="appearance-lang col2">
                 <!-- APPARENCE -->
-                <UCard class="appearance">
+                <UCard class="appearance" variant="subtle">
                     <template #header>
                         <h3 class="text-xl font-semibold">
                             <UIcon name="game-icons:character" class="size-5" /> Apparence
@@ -48,7 +48,7 @@
                 </UCard>
 
                 <!-- LANGUES -->
-                <UCard class="lang">
+                <UCard class="lang" variant="subtle">
                     <template #header>
                         <h3 class="text-xl font-semibold">
                             <UIcon name="ri:speak-fill" class="size-5" /> Langues

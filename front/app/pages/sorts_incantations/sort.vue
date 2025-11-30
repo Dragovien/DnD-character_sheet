@@ -1,7 +1,9 @@
 <template>
     <div v-if="store.character" class="page">
         <!-- SORTS -->
-        <h3 class="text-xl font-semibold">✨ Sorts</h3>
+        <h3 class="text-xl font-semibold">
+            <UIcon name="game-icons:bolt-spell-cast" class="size-5" /> Sorts
+        </h3>
         <div class="container">
             <UCard v-for="(s, i) in store.character.spells" :key="i" variant="subtle" class="spell_card">
                 <template #header>
@@ -28,13 +30,15 @@
 
         <!-- EMPLACEMENTS DE SORTS -->
         <h4 class="font-semibold mt-4">Emplacements de sorts</h4>
-        <div class="grid grid-cols-3 gap-2 text-sm">
-            <div v-for="(slot, i) in store.character.spellSlots">
-                <p>Sorts niveau {{ i }}:
-                    <span><b>{{ slot.used }}</b> utilisé(s) / <b>{{ slot.total }}</b></span>
-                </p>
+        <UCard variant="subtle">
+            <div class="grid grid-cols-3 gap-2 text-sm">
+                <div v-for="(slot, i) in store.character.spellSlots">
+                    <p>Sorts niveau {{ i }}:
+                        <span><b>{{ slot.used }}</b> utilisé(s) / <b>{{ slot.total }}</b></span>
+                    </p>
+                </div>
             </div>
-        </div>
+        </UCard>
     </div>
 </template>
 

@@ -1,14 +1,22 @@
 <template>
     <div v-if="store.character" class="page">
         <!-- MONNAIE -->
-        <h4 class="font-semibold mt-4">💰 Monnaie</h4>
-        <div class="grid grid-cols-5 gap-2">
-            <p>PC : {{ store.character.cp }}</p>
-            <p>PA : {{ store.character.sp }}</p>
-            <p>PE : {{ store.character.ep }}</p>
-            <p>PO : {{ store.character.gp }}</p>
-            <p>PP : {{ store.character.pp }}</p>
-        </div>
+        <UCard variant="subtle">
+            <template #header>
+                <h3 class="text-xl font-semibold">
+                    <UIcon name="game-icons:coins" class="size-5" /> Monnaie
+                </h3>
+            </template>
+
+            <div class="grid grid-cols-5 gap-2">
+                <p>PC : {{ store.character.cp }}</p>
+                <p>PA : {{ store.character.sp }}</p>
+                <p>PE : {{ store.character.ep }}</p>
+                <p>PO : {{ store.character.gp }}</p>
+                <p>PP : {{ store.character.pp }}</p>
+            </div>
+
+        </UCard>
     </div>
 </template>
 

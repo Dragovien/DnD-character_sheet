@@ -1,8 +1,10 @@
 <template>
     <div v-if="store.character" class="page">
-        <UCard>
+        <UCard variant="subtle">
             <template #header>
-                <h3 class="text-xl font-semibold">🛡️ Liens aux objets magiques</h3>
+                <h3 class="text-xl font-semibold">
+                    <UIcon name="game-icons:magic-axe" class="size-5" /> Liens aux objets magiques
+                </h3>
             </template>
 
             <ul class="list-disc ml-6">

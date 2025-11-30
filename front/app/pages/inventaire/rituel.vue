@@ -1,15 +1,15 @@
 <template>
     <div v-if="store.character" class="page">
-        <!-- Equipement -->
+        <!-- Rituel -->
         <UCard variant="subtle">
             <template #header>
                 <h3 class="text-xl font-semibold">
-                    <UIcon name="game-icons:grapple" class="size-5" /> Équipement
+                    <UIcon name="game-icons:smoke-bomb" class="size-5" /> Rituel
                 </h3>
             </template>
 
             <p class="whitespace-pre-line">{{store.character.equipment.find((item) => item.title ===
-                'Equipement')?.content}}</p>
+                'Rituel')?.content}}</p>
 
         </UCard>
     </div>

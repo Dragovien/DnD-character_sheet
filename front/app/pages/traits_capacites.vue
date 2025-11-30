@@ -1,7 +1,7 @@
 <template>
     <div v-if="store.character" class="page">
         <!-- TRAITS -->
-        <UCard>
+        <UCard variant="subtle">
             <template #header>
                 <h3 class="text-xl font-semibold">
                     <UIcon name="game-icons:notebook" class="size-5" /> Traits
@@ -14,7 +14,7 @@
         </UCard>
 
         <!-- CAPACITÉS -->
-        <UCard>
+        <UCard variant="subtle">
             <template #header>
                 <h3 class="text-xl font-semibold">
                     <UIcon name="game-icons:skills" class="size-5" /> Capacités & Dons
