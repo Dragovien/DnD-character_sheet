@@ -19,12 +19,12 @@ const items = ref<NavigationMenuItem[]>([
             },
             {
                 label: 'Caractéristiques',
-                icon: '',
+                icon: 'game-icons:histogram',
                 to: '/personnage/caracteristiques'
             },
             {
                 label: 'Entrainements et maîtrises',
-                icon: '',
+                icon: 'game-icons:master-of-arms',
                 to: '/personnage/entrainements_maitrises'
             },
         ]

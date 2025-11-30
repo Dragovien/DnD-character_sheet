@@ -3,7 +3,9 @@
         <!-- CARACTÉRISTIQUES -->
         <UCard>
             <template #header>
-                <h3 class="text-xl font-semibold mt-4">💠 Caractéristiques</h3>
+                <h3 class="text-xl font-semibold mt-4">
+                    <UIcon name="game-icons:histogram" class="size-5" /> Caractéristiques
+                </h3>
             </template>
 
             <div class="grid grid-cols-3 gap-4">
@@ -26,20 +28,46 @@
                     formatMod(store.character.abilities.modcha)
                     }})</div>
             </div>
-
-            <div><strong>Bonus de maitrise :</strong> {{ store.character.pb }}</div>
-            <div><strong>CA:</strong> {{ store.character.ac }}</div>
-            <div><strong>Initiative :</strong> {{ store.character.init }}</div>
-            <div><strong>Vitesse :</strong> {{ store.character.speed }}</div>
-            <div><strong>Taille :</strong> {{ store.character.size }}</div>
-            <div><strong>Perception passive :</strong> {{ store.character.passive }}</div>
-            <div><strong>Inspiration :</strong>{{ store.character.inspiration ? 'Oui' : 'Non' }}</div>
-
-            <div><strong>HP par level:</strong> {{ store.character.hpFormula }}</div>
-            <div><strong>HP actuels:</strong> {{ store.character.hpCurrent }}</div>
-            <div><strong>HP temp :</strong> {{ store.character.hpTemp }}</div>
-            <div><strong>HP max :</strong> {{ store.character.hpMax }}</div>
         </UCard>
+
+        <div class="flex-container">
+            <UCard class="col1">
+                <template #header>
+                    <h3 class="text-xl font-semibold mt-4">
+                        <UIcon name="solar:health-bold" class="size-5" /> HP
+                    </h3>
+                </template>
+
+                <div>
+                    <div><strong>HP par level:</strong> {{ store.character.hpFormula }}</div>
+                    <USeparator class="separator" />
+                    <div><strong>HP actuels:</strong> {{ store.character.hpCurrent }}</div>
+                    <div><strong>HP temp :</strong> {{ store.character.hpTemp }}</div>
+                    <div><strong>HP max :</strong> {{ store.character.hpMax }}</div>
+                </div>
+            </UCard>
+
+            <div class="col2">
+                <UCard>
+                    <template #header>
+                        <h3 class="text-xl font-semibold mt-4">
+                            <UIcon name="arcticons:fiftheditioncharactersheet" class="size-5" /> Stats
+                        </h3>
+                    </template>
+
+                    <div class="grid grid-cols-3 gap-5">
+                        <div><strong>Bonus de maitrise : </strong> {{ store.character.pb }}</div>
+                        <div><strong>CA: </strong> {{ store.character.ac }}</div>
+                        <div><strong>Inspiration : </strong>{{ store.character.inspiration ? 'Oui' : 'Non' }}</div>
+                        <div><strong>Initiative :</strong> {{ store.character.init }}</div>
+                        <div><strong>Vitesse :</strong> {{ store.character.speed }}</div>
+                        <div><strong>Taille :</strong> {{ store.character.size }}</div>
+                        <div><strong>Perception passive :</strong> {{ store.character.passive }}</div>
+                    </div>
+                </UCard>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -55,4 +83,9 @@ const formatMod = (v: number | undefined) => {
 
 </script>
 
-<style scoped></style>
+<style scoped>
+.col1,
+.col2 {
+    width: 100%;
+}
+</style>
