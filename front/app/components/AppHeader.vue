@@ -11,7 +11,23 @@ const items = ref<NavigationMenuItem[]>([
     {
         label: 'Personnage',
         icon: 'arcticons:dndrulebook',
-        to: '/personnage',
+        children: [
+            {
+                label: 'Général',
+                icon: 'game-icons:character',
+                to: '/personnage/general'
+            },
+            {
+                label: 'Caractéristiques',
+                icon: '',
+                to: '/personnage/caracteristiques'
+            },
+            {
+                label: 'Entrainements et maîtrises',
+                icon: '',
+                to: '/personnage/entrainements_maitrises'
+            },
+        ]
     },
     {
         label: 'Traits/Capacités',

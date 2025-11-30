@@ -7,10 +7,6 @@
 
         </UCard>
     </UContainer>
-
-    <!-- finir partie armure -->
-    <!-- Réorganiser partie combat -->
-    <!-- finir partie inventaire/loot/rituel -->
 </template>
 
 <style scoped>
