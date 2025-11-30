@@ -23,7 +23,7 @@
 
         <div class="flex-container">
             <!-- HISTOIRE -->
-            <UCard class="histoire">
+            <UCard class="histoire col1">
                 <template #header>
                     <h3 class="text-xl font-semibold">
                         <UIcon name="game-icons:scroll-unfurled" class="size-5" /> Histoire
@@ -34,7 +34,7 @@
 
             </UCard>
 
-            <div class="appearance-lang">
+            <div class="appearance-lang col2">
                 <!-- APPARENCE -->
                 <UCard class="appearance">
                     <template #header>
@@ -70,20 +70,4 @@ import { useCharacterStore } from '~/stores/character'
 const store = useCharacterStore()
 </script>
 
-<style scoped>
-.flex-container {
-    display: flex;
-    column-gap: 2rem;
-}
-
-.histoire,
-.appearance-lang {
-    max-width: 50%;
-}
-
-.appearance-lang {
-    display: flex;
-    flex-direction: column;
-    row-gap: 2rem;
-}
-</style>
+<style scoped></style>
