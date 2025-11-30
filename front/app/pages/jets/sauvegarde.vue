@@ -20,8 +20,6 @@
                     <li>CHA : {{ store.character.saves.save6 + value }}</li>
                 </ul>
             </div>
-
-
         </UCard>
     </div>
 </template>

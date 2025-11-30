@@ -4,7 +4,8 @@ import type { CharacterSheet } from '~/types/CharacterSheet'
 
 export const useCharacterStore = defineStore('character', {
     state: () => ({
-        character: null as CharacterSheet | null
+        character: null as CharacterSheet | null,
+        file: null as File | null
     }),
 
     actions: {
@@ -14,6 +15,7 @@ export const useCharacterStore = defineStore('character', {
 
         clearCharacter() {
             this.character = null
-        }
+        },
+
     }
 })

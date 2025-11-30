@@ -1,7 +1,7 @@
 <template>
   <!-- Upload PDF -->
-  <UFileUpload layout="list" :dropzone="true" :interactive="true" accept="application/pdf"
-    label="Fiche de personnage D&D 5e" description="PDF" class="w-96 min-h-96" @update:modelValue="upload" />
+  <UFileUpload v-model="store.file" layout="list" :dropzone="true" :interactive="true" accept="application/pdf"
+    label="Fiche de personnage D&D 5e" description="PDF" class="w-96 min-h-96" />
 
 </template>
 
@@ -352,6 +352,24 @@ async function upload(file: File | null | undefined) {
 
   store.setCharacter(mapPdfFieldsToCharacter(raw))
 }
+
+watch(
+  () => store.file,
+  async (file) => {
+    if (!file) {
+      // Le fichier a été supprimé dans UFileUpload
+      store.$patch({
+        file: null,
+        character: null
+      })
+      return
+    }
+
+    // Sinon : un nouveau fichier a été uploadé → on le traite
+    await upload(file)
+  }
+)
+
 </script>
 
 <style scoped></style>
