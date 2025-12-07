@@ -70,6 +70,11 @@ const items = ref<NavigationMenuItem[]>([
                 to: '/inventaire/loot',
             },
             {
+                label: 'Potions',
+                icon: 'game-icons:potion-ball',
+                to: '/inventaire/potion',
+            },
+            {
                 label: 'Rituel',
                 icon: 'game-icons:smoke-bomb',
                 to: '/inventaire/rituel',
